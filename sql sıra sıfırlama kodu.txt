@@ -1,0 +1,12 @@
+-- 1. Geçici bir sütun ekleyin
+ALTER TABLE menus ADD COLUMN temp_id INT;
+
+-- 2. Geçici sütunu sırayla güncelleyin
+SET @new_id = 0;
+UPDATE menus SET temp_id = (@new_id := @new_id + 1) ORDER BY id;
+
+-- 3. `id` sütununu geçici sütuna göre güncelleyin
+UPDATE menus SET id = temp_id;
+
+-- 4. Geçici sütunu kaldırın
+ALTER TABLE menus DROP COLUMN temp_id;

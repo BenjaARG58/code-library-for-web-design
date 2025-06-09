@@ -1,0 +1,235 @@
+<!--
+  @author: Berşan Kurtcephe
+  @author_url 1: https://www.bersan.kurtcephe.com
+  @author_email: bersankurtcephe@gmail.com
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lika yazılım - Yeni Kayıt</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: poppins, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            background-image: url('https://picsum.photos/1920/1080');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Logo tasarımı */
+        .logo-container {
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo-container img {
+            width: 150px;
+            height: auto;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+            
+            position: relative;
+            margin-top: 200px; /* Form logonun altında kalır */
+        }
+
+        /* Sekme başlıkları yukarı */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18%;
+        }
+
+        .steps h3 {
+            color: #1877f2;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+        }
+
+        .step {
+            top: 100px;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            color: #555;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step.active {
+            background-color: #1877f2;
+            color: #fff;
+            border-color: #1877f2;
+        }
+
+        /* Çizgiler */
+        .step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 100px;
+            height: 2px;
+            background-color: #ddd;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .step:last-child::after {
+            display: none; /* Son sekmede çizgi olmasın */
+        }
+
+        .step:hover {
+            background-color: #1877f2;
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .field:focus {
+            border: 1px solid #1877f2;
+            outline: none;
+            box-shadow: 0 0 5px rgba(24, 119, 242, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #155db8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <div class="logo-container">
+        <a target="_blank" href="https://likayazilim.com"><img src="images/logo-black.png" alt="Logo"></a>
+    </div>
+
+    <!-- Sekmeler -->
+    <div class="steps">
+        <div class="step active" data-tab="1">1</div>
+        <div class="step" data-tab="2">2</div>
+        <div class="step" data-tab="3">3</div>
+    </div>
+
+    <div class="form-container">
+        <!-- Form -->
+        <form id="signupForm" action="submit.php" method="POST">
+            <!-- Tab 1 -->
+            <div class="tab-content active" id="tab-1">
+                <h3>Kullanıcı Bilgileri</h3>
+                <input type="text" name="fullname" class="field" placeholder="Ad Soyad*" required>
+                <input type="text" name="username" class="field" placeholder="Kullanıcı Adı*" required>
+                <input type="email" name="email" class="field" placeholder="E-posta Adresi*" required>
+                <input type="password" name="password" class="field" placeholder="Şifre*" required>
+                <input type="password" name="confirm_password" class="field" placeholder="Şifreyi Onayla*" required>
+            </div>
+
+            <!-- Tab 2 -->
+            <div class="tab-content" id="tab-2">
+                <h3>İşletme Bilgileri</h3>
+                <input type="text" name="company_name" class="field" placeholder="İşletme Adı*" required>
+                <input type="dropdown" name="country" class="field" placeholder="Ülke*" required>
+                <input type="dropdown" name="city" class="field" placeholder="Şehir*" required>
+                <input type="text" name="posta_cody" class="field" placeholder="Posta Kodu" required>
+                <input type="text" name="company_address" class="field" placeholder="İşletme Adresi*" required>
+                <input type="dropdown" name="company_sector" class="field" placeholder="İşletme Sektörü*" required>
+                <input type="number" name="phone_number" class="field" placeholder="Telefon Numarası*"requried>
+                
+            </div>
+
+            <!-- Tab 3 -->
+            <div class="tab-content" id="tab-3">
+                <h3>Kart Bilgileri</h3>
+                <input type="text" name="card_name" class="field" placeholder="Kart Sahibinin Adı" required>
+                <input type="text" name="card_number" class="field" placeholder="Kart Numarası" required>
+                <input type="text" name="card_expiry" class="field" placeholder="Son Kullanma Tarihi (MM/YY)" required>
+                <input type="text" name="card_cvc" class="field" placeholder="CVC" required>
+                <button type="submit">Kayıt Ol</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const steps = document.querySelectorAll('.step');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        steps.forEach(step => {
+            step.addEventListener('click', () => {
+                const tabId = step.getAttribute('data-tab');
+                switchTab(tabId);
+            });
+        });
+
+        function switchTab(tabId) {
+            // Aktif sekmeyi değiştir
+            steps.forEach(step => step.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            document.querySelector(`.step[data-tab="${tabId}"]`).classList.add('active');
+            document.querySelector(`#tab-${tabId}`).classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+/* Genel stil */
+body {
+    font-family: poppins, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+  }
+  .button-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Buton stili */
+  .ripple-button {
+    position: relative;
+    overflow: hidden; /* Ripple taşmasını önlemek için */
+    padding: 45px 90px;
+    background-color: #6200eaa2;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Ripple efekti */
+  .ripple-button::before {
+    content: '';
+    position: absolute;
+    top: var(--ripple-y);
+    left: var(--ripple-x);
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.5); /* Beyaz yarı saydam */
+    display: block;
+    border-radius: 50%;
+    transform: scale(0); /* Başlangıçta küçük */
+    opacity: 1;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    pointer-events: none; /* Fare etkileşimini önler */
+  }
+  
+  /* Ripple genişlemesi */
+  .ripple-button.hovered::before {
+    transform: scale(20); /* Dalga genişliği */
+    opacity: 0; /* Opaklık kaybolacak */
+  }
+  
+  /* Butonun rengi, fare üzerinde olduğu süre boyunca değişsin */
+  .ripple-button.hovered {
+    background-color: #40b35db0; /* Renk değişimi */
+  }
+  
